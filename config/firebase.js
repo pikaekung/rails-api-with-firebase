@@ -10,7 +10,7 @@
  */
 
 module.exports.firebase = {
-  apiKey: 'AIzaSyBRjaLVrZJPkEi8zXTv-wXEL7aGw-01_y0',
-  authDomain: 'akip-website.firebaseapp.com',
+  // apiKey: 'AIzaSyBRjaLVrZJPkEi8zXTv-wXEL7aGw-01_y0',
+  // authDomain: 'akip-website.firebaseapp.com',
   projectId: 'akip-website',
 };

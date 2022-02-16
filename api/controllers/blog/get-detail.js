@@ -10,20 +10,26 @@ module.exports = {
   fn: async function () {
     const app = initializeApp(sails.config.firebase);
     const firestore = getFirestore(app);
-    // const blogCollectionRef = collection(firestore, 'blogs');
 
-    const docRef = doc(firestore, 'blogs', 'pdDvEXsTwYd0cAcJYR1R');
+    const id = this.req.params.id;
+    const docRef = doc(firestore, 'blogs', id);
     const docSnap = await getDoc(docRef);
 
+    let dataRespons = {};
     if (docSnap.exists()) {
-      console.log('Document data:', docSnap.data());
+      dataRespons = {
+        id: docSnap.id,
+        blog: docSnap.data(),
+      };
     } else {
       // doc.data() will be undefined in this case
       console.log('No such document!');
     }
 
     return {
-      data: 'Hello',
+      status_code: 200,
+      status_text: 'Get blog data.',
+      data: dataRespons,
     };
   },
 };
