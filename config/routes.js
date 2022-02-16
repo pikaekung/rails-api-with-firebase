@@ -33,5 +33,5 @@ module.exports.routes = {
 
   'GET /api/v1/blogs': { action: 'blog/list' },
   'GET /api/v1/blogs/:id': { action: 'blog/get-detail' },
-  'POST /api/v1/blogs': { action: 'blog/new' },
+  // 'POST /api/v1/blogs': { action: 'blog/new' },
 };

@@ -3,6 +3,7 @@ const {
   getFirestore,
   collection,
   query,
+  orderBy,
   getDocs,
 } = require('firebase/firestore');
 
@@ -17,16 +18,23 @@ module.exports = {
     const firestore = getFirestore(app);
 
     const collectionRef = collection(firestore, 'blogs');
-    const q = query(collectionRef);
+    const q = query(collectionRef, orderBy('created_at', 'desc'));
     const querySnapshot = await getDocs(q);
 
+    let data = [];
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, ' => ', doc.data());
+      let blog = doc.data();
+      data.push({
+        id: doc.id,
+        friendly_url: blog.friendly_url,
+        headline: blog.headline,
+      });
     });
 
     return {
-      data: 'Hello',
+      status_code: 200,
+      status_text: 'Get blog list.',
+      data: data,
     };
   },
 };
